@@ -62,6 +62,7 @@ G_BEGIN_DECLS
 typedef struct gbinder_bridge GBinderBridge; /* Since 1.1.5 */
 typedef struct gbinder_buffer GBinderBuffer;
 typedef struct gbinder_client GBinderClient;
+typedef struct gbinder_fmq GBinderFmq;  /* Since 1.1.14 */
 typedef struct gbinder_ipc GBinderIpc;
 typedef struct gbinder_local_object GBinderLocalObject;
 typedef struct gbinder_local_reply GBinderLocalReply;
@@ -143,6 +144,16 @@ typedef struct gbinder_hidl_memory {
 #define GBINDER_HIDL_MEMORY_PTR_OFFSET (0)
 #define GBINDER_HIDL_MEMORY_NAME_OFFSET (24)
 G_STATIC_ASSERT(sizeof(GBinderHidlMemory) == 40);
+
+typedef enum gbinder_fmq_type {
+    GBINDER_FMQ_TYPE_SYNC_READ_WRITE = 1,
+    GBINDER_FMQ_TYPE_UNSYNC_WRITE
+} GBINDER_FMQ_TYPE; /* Since 1.1.14 */
+
+typedef enum gbinder_fmq_flags {
+    GBINDER_FMQ_FLAG_CONFIGURE_EVENT_FLAG = 0x1,
+    GBINDER_FMQ_FLAG_NO_RESET_POINTERS    = 0x2
+} GBINDER_FMQ_FLAGS; /* Since 1.1.14 */
 
 /*
  * Each RPC call is identified by the interface name returned
